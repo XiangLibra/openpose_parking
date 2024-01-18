@@ -8,6 +8,9 @@ NOTE: The codebase is no longer maintained.
 ## COCO Parking space Dataset and Dataloader Setup:
 Label tool: https://xianglibra.github.io/label_tool.github.io/label_tool/label.html
 
+Use the Label tool after you can use this let xml convert to json file
+ ```python multixml2json.py```
+
  ## Data visualize can use this 
  ```python visualize_coco_dataloader.py```
 
