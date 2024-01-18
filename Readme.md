@@ -5,10 +5,10 @@ Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields](https://arx
 
 NOTE: The codebase is no longer maintained. 
 
-## COCO Multi-person Dataset and Dataloader Setup:
-Download  train2017.zip, val2017.zip and annotations_trainval2017.zip from [COCO Project](https://github.com/cocodataset/cocodataset.github.io/blob/master/dataset/download.htm) The keypoints description can be found [here](http://cocodataset.org/#format-data). Extract the folders and place them in '/data'. Pre-processing of the dataset is done on the fly. To visualize the data loader use:
+## COCO Parking space Dataset and Dataloader Setup:
+Label tool: https://xianglibra.github.io/label_tool.github.io/label_tool/label.html
  
- ```python visualize_coco_dataloader.py -data ../data -vizPaf```
+ ```python visualize_coco_dataloader.py```
 
 The data loader depends on pycocoapi which can be installed using 
 
@@ -21,7 +21,7 @@ The paper uses first 10 layers from VGG-19 as feature extractor followed by 7 he
 
 ## Training and Testing:
 
-```python main.py -data ../data -expID vgg19 -model vgg -train```
+```python main.py ```
 
 Comprehensive list of opts can be found in ```opts/``` folder. To debug/visualize each image's outputs during training ```-vizOut``` flag is helpful. 50k iterations takes around 11.5 hours with a batch size of 8 on a GTX 1080 GPU 
 
@@ -31,6 +31,6 @@ Sample nose heatmap outputs and nose-eye paf ouput is below after 20 epochs of t
 ## Evaluation:
 Evaluation is performed at multple scales and the average heatmap and paf are used for decoding pose. The evaluation pipeline is used from [here](https://github.com/tensorboy/pytorch_Realtime_Multi-Person_Pose_Estimation/blob/master/evaluate/coco_eval.py).
 
-```python eval.py -data ../data -expID vgg19 -loadModel ../exp/vgg19/model_20.pth```
+```python test.py -loadModel ../exp/default/model_train.pth```
 
 ![Sample Output](output/sample_output.png?raw=true "Sample outpus")
