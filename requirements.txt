@@ -1,0 +1,5 @@
+opencv-python
+tqdm
+matplotlib
+pycocotools
+scipy
