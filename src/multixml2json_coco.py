@@ -41,18 +41,18 @@ def xml_to_json(xml_path, json_data):
         x3 = int(obj.find("bndbox/x3").text)
         y3 = int(obj.find("bndbox/y3").text)
 
-        # 計算bbox的中心點和寬度、高度
-        center_x = (x0 + x1 + x2 + x3) / 4
-        center_y = (y0 + y1 + y2 + y3) / 4
-        width = max(x0, x1, x2, x3) - min(x0, x1, x2, x3)
-        height = max(y0, y1, y2, y3) - min(y0, y1, y2, y3)
+# 計算bbox的最小x和最小y，以及寬度、高度
+        min_x = min(x0, x1, x2, x3)
+        min_y = min(y0, y1, y2, y3)
+        width = max(x0, x1, x2, x3) - min_x
+        height = max(y0, y1, y2, y3) - min_y
 
         # 更新 JSON 對象，添加bbox屬性
         json_data["annotations"].append({
             "id": current_id,
             "image_id": current_image_id,
             "category_id": 1,
-            "bbox": [center_x, center_y, width, height],
+            "bbox": [min_x, min_y, width, height],
             "segmentation": [
                 [x0, y0, x1, y1, x2, y2, x3, y3]
             ],
